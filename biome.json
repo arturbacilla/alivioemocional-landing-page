@@ -13,7 +13,7 @@
 		"enabled": true,
 		"formatWithErrors": false,
 		"indentStyle": "tab",
-		"lineWidth": 120 
+		"lineWidth": 120
 	},
 	"organizeImports": {
 		"enabled": true
@@ -23,8 +23,12 @@
 		"rules": {
 			"recommended": true,
 			"nursery": {
-				"useSortedClasses": "warn"
-			  }
+				"useSortedClasses": {
+					"level": "warn",
+					"fix": "safe",
+					"options": {}
+				}
+			}
 		}
 	},
 	"javascript": {

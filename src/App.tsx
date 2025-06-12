@@ -1,14 +1,36 @@
-import type React from "react";
+import * as React from "react";
+import useCurrentBreakpoint from "./hooks/useCurrentBreakpoint";
+import { Carousel, CarouselContent, CarouselItem, CarouselNext, CarouselPrevious } from "./components/ui/carousel";
+import { useEffect, useState } from "react";
+import { Card, CardContent } from "./components/ui/card";
+import Autoplay from "embla-carousel-autoplay";
+
+interface CardComment {
+	name: string;
+	comment: string;
+}
+
+const list = [
+	"Ferramentas que funcionam na hora da crise.",
+	"Técnicas de respiração, presença e autocompaixão.",
+	"Apoio para lidar com ansiedade, tristeza e dor profunda.",
+	"Reconexão com o sentido da vida, no seu tempo",
+];
 
 const App: React.FC = () => {
-	const list = [
-		"Ferramentas que funcionam na hora da crise.",
-		"Técnicas de respiração, presença e autocompaixão.",
-		"Apoio para lidar com ansiedade, tristeza e dor profunda.",
-		"Reconexão com o sentido da vida, no seu tempo",
-	];
+	const plugin = React.useRef(Autoplay({ delay: 10000, stopOnInteraction: true }));
 
-	return (
+	const [cards, setCards] = useState<CardComment[]>([]);
+
+	useEffect(() => {
+		fetch("/cards.json")
+			.then((response) => response.json())
+			.then((jsonData) => setCards(jsonData));
+	}, []);
+
+	const breakpoint = useCurrentBreakpoint() || "sm";
+
+	return breakpoint ? (
 		<main className="select-none">
 			<section id="bg-images" className="relative ">
 				<div id="hand-box" className="absolute top-0 left-0 h-[68vh] w-full lg:h-screen lg:w-[70vw]">
@@ -53,7 +75,39 @@ const App: React.FC = () => {
 					</div>
 				))}
 			</section>
+			<section
+				id="comment-cards"
+				className="fixed right-[1rem] bottom-[2rem] h-[20%] w-[92dvw]! overflow-hidden lg:top-[2rem] lg:right-[2rem] lg:h-[100%] lg:max-h-[94dvh] lg:w-[25%] lg:w-[27dvw]!"
+			>
+				<Carousel
+					opts={{
+						align: "start",
+					}}
+					orientation={["sm", "md"].find((item) => breakpoint && item === breakpoint) ? "horizontal" : "vertical"}
+					plugins={[plugin.current]}
+					onMouseEnter={plugin.current.stop}
+					onMouseLeave={plugin.current.reset}
+				>
+					<CarouselContent className="gap-5 ">
+						{cards.map(({ name, comment }, key) => (
+							// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+							<CarouselItem key={key}>
+								<Card className="shadow-2xl">
+									<CardContent className="flex flex-col gap-[1.2rem] p-[1rem]!">
+										<p className="font-gochi-hand text-[1.3rem]">"{comment}"</p>
+										<span className="self-end font-bold font-garet">{name}</span>
+									</CardContent>
+								</Card>
+							</CarouselItem>
+						))}
+					</CarouselContent>
+					<CarouselPrevious />
+					<CarouselNext />
+				</Carousel>
+			</section>
 		</main>
+	) : (
+		<span>Loading...</span>
 	);
 };
 

@@ -18,7 +18,7 @@ const list = [
 ];
 
 const App: React.FC = () => {
-	const plugin = React.useRef(Autoplay({ delay: 10000, stopOnInteraction: true }));
+	const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: false }));
 
 	const [cards, setCards] = useState<CardComment[]>([]);
 
@@ -32,8 +32,8 @@ const App: React.FC = () => {
 
 	return breakpoint ? (
 		<main className="select-none">
-			<section id="bg-images" className="relative ">
-				<div id="hand-box" className="absolute top-0 left-0 h-[68vh] w-full lg:h-screen lg:w-[70vw]">
+			<section id="bg-images" className="relative">
+				<div id="hand-box" className="absolute top-0 left-0 h-[68vh] w-full lg:h-screen lg:w-[71vw]">
 					<img
 						className="absolute z-0 min-h-full min-w-full object-cover opacity-75"
 						src="/hand.png"
@@ -64,47 +64,42 @@ const App: React.FC = () => {
 			</header>
 			<section
 				id="main-text"
-				className="absolute top-[11rem] left-[1rem] flex h-[40%] w-[12rem] flex-col gap-[0.8rem] font-bold font-garet! lg:top-[22rem] lg:left-[2rem] lg:w-[35%] "
+				className="absolute top-[11rem] left-[1rem] flex h-[45dvh] w-[12rem] flex-col gap-[0.8rem] overflow-hidden font-bold font-garet! lg:top-[22rem] lg:left-[2rem] lg:w-[35%] "
 			>
 				<span className="text-secondary lg:text-[2.4rem]">Um refúgio seguro</span>
 				<span className="text-[0.8rem] text-black lg:text-[1.8rem]">O que você vai encontrar aqui:</span>
 				{list.map((item: string, id: number) => (
-					<div className="flex flex-row gap-1 text-[0.9rem] lg:text-[1.4rem]" key={`item-${id + 1}`}>
+					<div className="flex flex-row gap-1 text-[70%] lg:text-[1.4rem]" key={`item-${id + 1}`}>
 						<div>🌿</div>
 						<span>{item}</span>
 					</div>
 				))}
 			</section>
-			<section
-				id="comment-cards"
-				className="fixed right-[1rem] bottom-[2rem] h-[20%] w-[92dvw]! overflow-hidden lg:top-[2rem] lg:right-[2rem] lg:h-[100%] lg:max-h-[94dvh] lg:w-[25%] lg:w-[27dvw]!"
+			<Carousel
+				className="absolute bottom-[1rem] max-w-full p-[1rem]! lg:top-[1rem] lg:right-[1rem] lg:max-w-[27dvw] lg:p-0!"
+				opts={{
+					align: "start",
+					loop: true,
+				}}
+				orientation={["sm", "md"].includes(breakpoint) ? "horizontal" : "vertical"}
+				plugins={[plugin.current]}
+				onMouseEnter={plugin.current.stop}
+				onMouseLeave={plugin.current.reset}
 			>
-				<Carousel
-					opts={{
-						align: "start",
-					}}
-					orientation={["sm", "md"].find((item) => breakpoint && item === breakpoint) ? "horizontal" : "vertical"}
-					plugins={[plugin.current]}
-					onMouseEnter={plugin.current.stop}
-					onMouseLeave={plugin.current.reset}
-				>
-					<CarouselContent className="gap-5 ">
-						{cards.map(({ name, comment }, key) => (
-							// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
-							<CarouselItem key={key}>
-								<Card className="shadow-2xl">
-									<CardContent className="flex flex-col gap-[1.2rem] p-[1rem]!">
-										<p className="font-gochi-hand text-[1.3rem]">"{comment}"</p>
-										<span className="self-end font-bold font-garet">{name}</span>
-									</CardContent>
-								</Card>
-							</CarouselItem>
-						))}
-					</CarouselContent>
-					<CarouselPrevious />
-					<CarouselNext />
-				</Carousel>
-			</section>
+				<CarouselContent className="h-[25dvh]! gap-[0.8rem] lg:h-[100%]! lg:max-h-[97dvh]!">
+					{cards.map(({ name, comment }, key) => (
+						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
+						<CarouselItem key={key} className="w-full">
+							<Card>
+								<CardContent className="flex flex-col gap-[1.2rem] p-[1rem]! ">
+									<p className="font-gochi-hand text-[100%]">"{comment}"</p>
+									<span className="self-end font-bold font-garet">{name}</span>
+								</CardContent>
+							</Card>
+						</CarouselItem>
+					))}
+				</CarouselContent>
+			</Carousel>
 		</main>
 	) : (
 		<span>Loading...</span>

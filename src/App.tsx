@@ -18,7 +18,7 @@ const list = [
 ];
 
 const App: React.FC = () => {
-	const plugin = React.useRef(Autoplay({ delay: 2000, stopOnInteraction: false }));
+	const plugin = React.useRef(Autoplay({ delay: 8000, stopOnInteraction: false }));
 
 	const [cards, setCards] = useState<CardComment[]>([]);
 
@@ -55,7 +55,7 @@ const App: React.FC = () => {
 				</div>
 			</section>
 			<header className="absolute top-[4rem] z-100 flex w-[70%] flex-col rounded-r-[10rem] bg-primary p-[0.8rem]! font-garet! shadow-2xl md:items-center lg:w-[50%] lg:rounded-r-[20rem] lg:p-[2rem]!">
-				<div className="fixed top-[1rem] left-[1rem] flex flex-row items-center gap-2">
+				<div className="absolute top-[-3rem] left-[1rem] flex flex-row items-center gap-2">
 					<img className="size-[2rem]" src="/book.svg" alt="book icon" />
 					<span>EBOOK</span>
 				</div>
@@ -76,17 +76,16 @@ const App: React.FC = () => {
 				))}
 			</section>
 			<Carousel
-				className="absolute bottom-[1rem] max-w-full p-[1rem]! lg:top-[1rem] lg:right-[1rem] lg:max-w-[27dvw] lg:p-0!"
+				className="absolute bottom-[-14rem] max-w-full p-[1rem]! lg:top-[1rem] lg:right-[1rem] lg:bottom-[1rem] lg:max-w-[27dvw] lg:p-0!"
 				opts={{
 					align: "start",
-					loop: true,
 				}}
 				orientation={["sm", "md"].includes(breakpoint) ? "horizontal" : "vertical"}
 				plugins={[plugin.current]}
 				onMouseEnter={plugin.current.stop}
 				onMouseLeave={plugin.current.reset}
 			>
-				<CarouselContent className="h-[25dvh]! gap-[0.8rem] lg:h-[100%]! lg:max-h-[97dvh]!">
+				<CarouselContent className="h-[100%]! gap-[0.8rem] lg:h-[100%]! lg:max-h-[60dvh]!">
 					{cards.map(({ name, comment }, key) => (
 						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 						<CarouselItem key={key} className="w-full">

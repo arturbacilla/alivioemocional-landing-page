@@ -39,12 +39,26 @@ const App: React.FC = () => {
 						src="/hand.png"
 						alt="drowning hand"
 					/>
-					<div id="woman-frame" className="absolute top-8 right-0 z-20 h-[60%] w-[44%] lg:h-[70%] lg:w-[45%]">
+					<div
+						id="woman-frame"
+						className="absolute top-8 right-0 z-20 flex h-[60%] w-[44%] flex-col lg:h-[70%] lg:w-[45%]"
+					>
 						<img
 							className="min-h-full rounded-b-[6rem] rounded-tl-[6rem] border-[1rem]! border-primary! border-solid! object-cover object-[65%-0] lg:rounded-b-[20rem] lg:rounded-tl-[15rem] lg:border-[1.5rem]!"
 							src="/woman.jpeg"
 							alt="wondering woman"
 						/>
+						<div className="relative right-[-5rem] bottom-[1rem] lg:right-0 lg:bottom-0">
+							<img
+								className="absolute z-5 size-[5rem] rotate-[50deg] scale-x-[-1] self-end object-fill lg:right-[-3rem] lg:bottom-[-10rem] lg:size-[12rem] lg:rotate-[-85deg] lg:scale-x-[1]"
+								src="/arrow.svg"
+								alt="arrow"
+							/>
+							<div className="absolute right-[9rem] bottom-[-4rem] z-99 flex h-[30%] w-[60%] flex-col text-[80%] lg:right-[-20rem] lg:bottom-0 lg:w-[50%] lg:text-[2rem]">
+								<p className="text-center font-bold font-fredoka-one">seu Kit de primeiros socorros da alma</p>
+								<span className="text-center font-gochi-hand">por Lanbapk</span>
+							</div>
+						</div>
 					</div>
 				</div>
 				<div
@@ -76,7 +90,7 @@ const App: React.FC = () => {
 				))}
 			</section>
 			<Carousel
-				className="absolute bottom-[-14rem] max-w-full p-[1rem]! lg:top-[1rem] lg:right-[1rem] lg:bottom-[1rem] lg:max-w-[27dvw] lg:p-0!"
+				className="absolute bottom-[-14rem] max-w-full p-[1rem]! lg:top-[6rem] lg:right-[1rem] lg:bottom-[1rem] lg:max-w-[27dvw] lg:p-0!"
 				opts={{
 					align: "start",
 				}}
@@ -85,14 +99,14 @@ const App: React.FC = () => {
 				onMouseEnter={plugin.current.stop}
 				onMouseLeave={plugin.current.reset}
 			>
-				<CarouselContent className="h-[100%]! gap-[0.8rem] lg:h-[100%]! lg:max-h-[60dvh]!">
+				<CarouselContent className="h-[100%]! gap-[1rem] lg:h-[100%]! lg:max-h-[50dvh]!">
 					{cards.map(({ name, comment }, key) => (
 						// biome-ignore lint/suspicious/noArrayIndexKey: <explanation>
 						<CarouselItem key={key} className="w-full">
 							<Card>
 								<CardContent className="flex flex-col gap-[1.2rem] p-[1rem]! ">
-									<p className="font-gochi-hand text-[100%]">"{comment}"</p>
-									<span className="self-end font-bold font-garet">{name}</span>
+									<p className="text-justify font-gochi-hand text-[100%]">"{comment}"</p>
+									<span className="self-end font-bold font-garet lg:text-[80%] text-[50%]">{name}</span>
 								</CardContent>
 							</Card>
 						</CarouselItem>

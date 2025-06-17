@@ -106,7 +106,7 @@ const App: React.FC = () => {
 							<Card>
 								<CardContent className="flex flex-col gap-[1.2rem] p-[1rem]! ">
 									<p className="text-justify font-gochi-hand text-[100%]">"{comment}"</p>
-									<span className="self-end font-bold font-garet lg:text-[80%] text-[50%]">{name}</span>
+									<span className="self-end font-bold font-garet text-[50%] lg:text-[80%]">{name}</span>
 								</CardContent>
 							</Card>
 						</CarouselItem>

@@ -1,6 +1,10 @@
 FROM oven/bun:1 AS base
 WORKDIR /usr/src/app
 
+ARG VITE_PORT
+ENV VITE_PORT=$VITE_PORT
+RUN test -n "$VITE_PORT" || (echo "VITE_PORT  not set" && false)
+
 FROM base AS install
 RUN mkdir -p /temp/dev
 COPY package.json bun.lock /temp/dev/
@@ -19,8 +23,6 @@ RUN bun run build
 
 # copy production dependencies and source code into final image
 FROM base AS release
-ARG VITE_PORT
-ENV VITE_PORT=$VITE_PORT
 COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prerelease /usr/src/app/dist ./dist
 

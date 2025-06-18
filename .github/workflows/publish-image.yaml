@@ -22,6 +22,8 @@ jobs:
         uses: mathieudutour/github-tag-action@v6.2
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
+          default_bump: false
+          custom_release_rules: hotfix:patch,core:patch,ci:patch,build:major
 
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
@@ -49,12 +51,15 @@ jobs:
         with:
           context: .
           push: true
+          build-args: |
+            VITE_PORT=${{ secrets.VITE_PORT }}
           labels: ${{ steps.meta.outputs.labels }}
           tags: >
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:${{ steps.tag_version.outputs.new_tag }},
             ${{ env.REGISTRY }}/${{ env.IMAGE_NAME }}:latest
       
       - name: Generate artifact attestation
+        id: attest
         uses: actions/attest-build-provenance@v2
         with:
           subject-name: ${{ env.REGISTRY }}/${{ env.IMAGE_NAME}}

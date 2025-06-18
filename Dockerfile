@@ -1,6 +1,20 @@
 FROM oven/bun:1 AS base
 WORKDIR /usr/src/app
 
+ARG VITE_PORT
+ENV VITE_PORT=$VITE_PORT
+RUN test -n "$VITE_PORT" || (echo "VITE_PORT  not set" && false)
+
+ARG VITE_PUBLIC_KIWIFY_URL
+ENV VITE_PUBLIC_KIWIFY_URL=$VITE_PUBLIC_KIWIFY_URL
+RUN test -n "$VITE_PUBLIC_KIWIFY_URL" || (echo "VITE_PUBLIC_KIWIFY_URL  not set" && false)
+
+ARG VITE_PUBLIC_POSTHOG_HOST
+ENV VITE_PUBLIC_POSTHOG_HOST=$VITE_PUBLIC_POSTHOG_HOST
+
+ARG VITE_PUBLIC_POSTHOG_KEY
+ENV VITE_PUBLIC_POSTHOG_KEY=$VITE_PUBLIC_POSTHOG_KEY
+
 FROM base AS install
 RUN mkdir -p /temp/dev
 COPY package.json bun.lock /temp/dev/
@@ -19,8 +33,6 @@ RUN bun run build
 
 # copy production dependencies and source code into final image
 FROM base AS release
-ARG VITE_PORT
-ENV VITE_PORT=$VITE_PORT
 COPY --from=install /temp/prod/node_modules node_modules
 COPY --from=prerelease /usr/src/app/dist ./dist
 

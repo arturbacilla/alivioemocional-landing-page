@@ -17,13 +17,12 @@ export default defineConfig(({ mode }: ConfigEnv) => {
 				"@": path.resolve(__dirname, "./src"),
 			},
 		},
-		preview: {
-			host: true,
-			port: Number(env.VITE_PORT ?? 5173),
-		},
 		server: {
 			host: true,
-			port: Number(env.VITE_PORT ?? 5173),
+			port: Number(env.VITE_PORT ?? 8000),
+			watch: {
+				usePolling: true,
+			},
 		},
 	};
 });

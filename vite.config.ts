@@ -19,10 +19,7 @@ export default defineConfig(({ mode }: ConfigEnv) => {
 		},
 		server: {
 			host: true,
-			port: Number(env.VITE_PORT ?? 8000),
-			watch: {
-				usePolling: true,
-			},
+			port: Number(env.VITE_PORT ?? 5173),
 		},
 	};
 });

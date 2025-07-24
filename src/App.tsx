@@ -40,12 +40,12 @@ const App: React.FC = () => {
 							id="title"
 							className="absolute top-[4.5vh] z-100 flex w-[70vw]! flex-col rounded-r-[10rem] bg-primary p-[0.8rem]! shadow-2xl md:items-center lg:top-[7vh] lg:w-[52vw]! lg:rounded-r-[20rem]"
 						>
-							<span className="font-bold text-[2vh] lg:text-[4vh]">Alívio Emocional</span>
-							<span className="font-bold text-[4vh] leading-none lg:text-[8vh]">IMEDIATO</span>
+							<h1 className="font-bold text-[2vh] lg:text-[4vh]">Alívio Emocional</h1>
+							<h1 className="font-bold text-[4vh] leading-none lg:text-[8vh]">IMEDIATO</h1>
 						</header>
 
 						<div id="ebook-tag" className="flex h-[25%]! flex-row items-start gap-2 p-[2vw]! lg:h-[25%]! lg:p-[1vw]! ">
-							<img className="size-[5vw] lg:size-[2vw]" src="/book.svg" alt="book icon" />
+							<img className="size-[5vw] lg:size-[2vw]" src="https://cdn.alivioemocional.help/book.svg" alt="book icon" />
 							<span className="text-[3.5vw] lg:text-[1.2vw]">EBOOK</span>
 						</div>
 
@@ -53,8 +53,8 @@ const App: React.FC = () => {
 							id="items-list"
 							className="flex w-[100%]! flex-col gap-[1vh] px-[4vw]! py-[1vh]! lg:gap-[2vh] lg:py-[2vh]!"
 						>
-							<span className="text-[100%] text-secondary lg:text-[3.5vh]">Um refúgio seguro</span>
-							<span className="text-[1.5vh] text-black lg:text-[3vh]">O que você vai encontrar aqui:</span>
+							<h3 className="text-[100%] text-secondary lg:text-[3.5vh]">Um refúgio seguro</h3>
+							<h3 className="text-[1.5vh] text-black lg:text-[3vh]">O que você vai encontrar aqui:</h3>
 							{list.map((item: string, id: number) => (
 								<div className="flex flex-row gap-1 text-[1.4vh] lg:text-[2.5vh]" key={`item-${id + 1}`}>
 									<div>🌿</div>
@@ -83,7 +83,7 @@ const App: React.FC = () => {
 					<div id="portrait-image" className="z-80 w-[50%] pt-[2vh]! lg:pt-[3vh]!">
 						<img
 							className="min-h-[65%] rounded-b-[25vw] rounded-tl-[25dvw] border-[3vw]! border-primary! border-solid! object-cover object-[65%-0] lg:rounded-b-[20vw] lg:rounded-tl-[15vw] lg:border-[1.3vw]!"
-							src="/woman.jpeg"
+							src="https://cdn.alivioemocional.help/woman.jpeg?f=webp"
 							alt="wondering woman"
 						/>
 					</div>
@@ -91,18 +91,18 @@ const App: React.FC = () => {
 				<div className="absolute right-[-20vw] bottom-[2vh] z-99 flex flex-col lg:right-[-35vw] lg:bottom-[18vh] lg:flex-row">
 					<img
 						className="z-5 ml-[4vw]! size-[18vw] rotate-[20deg] scale-x-[-1] object-fill lg:size-[10vw] lg:rotate-[-85deg] lg:scale-x-[1] lg:self-start"
-						src="/arrow.svg"
+						src="https://cdn.alivioemocional.help/arrow.svg"
 						alt="arrow"
 					/>
 					<div className="z-99 flex h-[30%] w-[60%] flex-col text-[1.5vh] lg:w-[50%] lg:self-end lg:text-[3vh] ">
-						<p className="text-center font-bold font-fredoka-one">seu Kit de primeiros socorros da alma</p>
+						<h2 className="text-center font-bold font-fredoka-one">seu Kit de primeiros socorros da alma</h2>
 						<span className="text-center font-gochi-hand">por Lanbapk</span>
 					</div>
 				</div>
 				<img
 					id="hand-background"
 					className="absolute top-0 left-0 z--1 min-h-full! object-cover opacity-75 lg:min-w-full!"
-					src="/hand.png"
+					src="https://cdn.alivioemocional.help/hand.png?f=webp"
 					alt="drowning hand"
 				/>
 			</section>
@@ -133,7 +133,7 @@ const App: React.FC = () => {
 				</Carousel>
 				<img
 					className="absolute right-[-15%] bottom-[-15%] z-0 size-[50vw] object-fill lg:right-[-7%]! lg:bottom-[-30%]! lg:size-[25vw]"
-					src="/balls.svg"
+					src="https://cdn.alivioemocional.help/balls.svg"
 					alt="decor-balls"
 				/>
 			</section>

@@ -29,10 +29,21 @@ const App: React.FC = () => {
 			.then((jsonData) => setCards(jsonData));
 	}, []);
 
+
 	const breakpoint = useCurrentBreakpoint() || "xs";
 
-	return !!breakpoint && !!cards.length ? (
-		<main className="relative flex h-[100vh] w-[100vw]! select-none flex-col overflow-hidden lg:flex-row">
+	const resByBP = (bp: string) => {
+		switch (bp) {
+			case "xs":
+			case "sm":
+			case "md":
+				return "&w=500"		
+			default:
+				return "&w=1200"
+		}
+	}
+
+	return <main className="relative flex h-[100vh] w-[100vw]! select-none flex-col overflow-hidden lg:flex-row">
 			<section id="content" className="max-h relative min-h-[60vh] lg:min-w-[70vw]!">
 				<div id="main-split" className="z-99 flex h-[100%]! flex-row">
 					<div id="text-information" className="z-99 flex w-[50%] flex-col font-bold font-garet! lg:w-[85%]">
@@ -41,7 +52,7 @@ const App: React.FC = () => {
 							className="absolute top-[4.5vh] z-100 flex w-[70vw]! flex-col rounded-r-[10rem] bg-primary p-[0.8rem]! shadow-2xl md:items-center lg:top-[7vh] lg:w-[52vw]! lg:rounded-r-[20rem]"
 						>
 							<h1 className="font-bold text-[2vh] lg:text-[4vh]">Alívio Emocional</h1>
-							<h1 className="font-bold text-[4vh] leading-none lg:text-[8vh]">IMEDIATO</h1>
+							<h2 className="font-bold text-[4vh] leading-none lg:text-[8vh]">IMEDIATO</h2>
 						</header>
 
 						<div id="ebook-tag" className="flex h-[25%]! flex-row items-start gap-2 p-[2vw]! lg:h-[25%]! lg:p-[1vw]! ">
@@ -53,8 +64,8 @@ const App: React.FC = () => {
 							id="items-list"
 							className="flex w-[100%]! flex-col gap-[1vh] px-[4vw]! py-[1vh]! lg:gap-[2vh] lg:py-[2vh]!"
 						>
-							<h3 className="text-[100%] text-secondary lg:text-[3.5vh]">Um refúgio seguro</h3>
-							<h3 className="text-[1.5vh] text-black lg:text-[3vh]">O que você vai encontrar aqui:</h3>
+							<span className="text-[100%] text-secondary lg:text-[3.5vh]">Um refúgio seguro</span>
+							<span className="text-[1.5vh] text-black lg:text-[3vh]">O que você vai encontrar aqui:</span>
 							{list.map((item: string, id: number) => (
 								<div className="flex flex-row gap-1 text-[1.4vh] lg:text-[2.5vh]" key={`item-${id + 1}`}>
 									<div>🌿</div>
@@ -83,7 +94,7 @@ const App: React.FC = () => {
 					<div id="portrait-image" className="z-80 w-[50%] pt-[2vh]! lg:pt-[3vh]!">
 						<img
 							className="min-h-[65%] rounded-b-[25vw] rounded-tl-[25dvw] border-[3vw]! border-primary! border-solid! object-cover object-[65%-0] lg:rounded-b-[20vw] lg:rounded-tl-[15vw] lg:border-[1.3vw]!"
-							src="https://cdn.alivioemocional.help/woman.jpeg?f=webp"
+							src={`https://cdn.alivioemocional.help/woman.jpeg?f=webp${resByBP(breakpoint)}`}
 							alt="wondering woman"
 						/>
 					</div>
@@ -95,14 +106,14 @@ const App: React.FC = () => {
 						alt="arrow"
 					/>
 					<div className="z-99 flex h-[30%] w-[60%] flex-col text-[1.5vh] lg:w-[50%] lg:self-end lg:text-[3vh] ">
-						<h2 className="text-center font-bold font-fredoka-one">seu Kit de primeiros socorros da alma</h2>
+						<h3 className="text-center font-bold font-fredoka-one">seu Kit de primeiros socorros da alma</h3>
 						<span className="text-center font-gochi-hand">por Lanbapk</span>
 					</div>
 				</div>
 				<img
 					id="hand-background"
 					className="absolute top-0 left-0 z--1 min-h-full! object-cover opacity-75 lg:min-w-full!"
-					src="https://cdn.alivioemocional.help/hand.png?f=webp"
+					src={`https://cdn.alivioemocional.help/hand.png?f=webp${resByBP(breakpoint)}`}
 					alt="drowning hand"
 				/>
 			</section>
@@ -138,9 +149,6 @@ const App: React.FC = () => {
 				/>
 			</section>
 		</main>
-	) : (
-		<span>Loading...</span>
-	);
 };
 
 export default App;

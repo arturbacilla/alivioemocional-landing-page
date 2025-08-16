@@ -56,7 +56,7 @@ const App: React.FC = () => {
 						</header>
 
 						<div id="ebook-tag" className="flex h-[25%]! flex-row items-start gap-2 p-[2vw]! lg:h-[25%]! lg:p-[1vw]! ">
-							<img className="size-[5vw] lg:size-[2vw]" src="https://cdn.alivioemocional.help/book.svg" alt="book icon" />
+							<img className="size-[5vw] lg:size-[2vw]" src={`https:\/\/cdn.arturbacilla.dev/${import.meta.env.VITE_PROJECT_HASH}/book.svg`} alt="book icon" />
 							<span className="text-[3.5vw] lg:text-[1.2vw]">EBOOK</span>
 						</div>
 
@@ -94,7 +94,7 @@ const App: React.FC = () => {
 					<div id="portrait-image" className="z-80 w-[50%] pt-[2vh]! lg:pt-[3vh]!">
 						<img
 							className="min-h-[65%] rounded-b-[25vw] rounded-tl-[25dvw] border-[3vw]! border-primary! border-solid! object-cover object-[65%-0] lg:rounded-b-[20vw] lg:rounded-tl-[15vw] lg:border-[1.3vw]!"
-							src={`https://cdn.alivioemocional.help/woman.jpeg?f=webp${resByBP(breakpoint)}`}
+							src={`https://cdn.arturbacilla.dev/${import.meta.env.VITE_PROJECT_HASH}/woman.jpeg?f=webp${resByBP(breakpoint)}`}
 							alt="wondering woman"
 						/>
 					</div>
@@ -102,7 +102,7 @@ const App: React.FC = () => {
 				<div className="absolute right-[-20vw] bottom-[2vh] z-99 flex flex-col lg:right-[-35vw] lg:bottom-[18vh] lg:flex-row">
 					<img
 						className="z-5 ml-[4vw]! size-[18vw] rotate-[20deg] scale-x-[-1] object-fill lg:size-[10vw] lg:rotate-[-85deg] lg:scale-x-[1] lg:self-start"
-						src="https://cdn.alivioemocional.help/arrow.svg"
+						src={`https://cdn.arturbacilla.dev/${import.meta.env.VITE_PROJECT_HASH}/arrow.svg`}
 						alt="arrow"
 					/>
 					<div className="z-99 flex h-[30%] w-[60%] flex-col text-[1.5vh] lg:w-[50%] lg:self-end lg:text-[3vh] ">
@@ -113,7 +113,7 @@ const App: React.FC = () => {
 				<img
 					id="hand-background"
 					className="absolute top-0 left-0 z--1 min-h-full! object-cover opacity-75 lg:min-w-full!"
-					src={`https://cdn.alivioemocional.help/hand.png?f=webp${resByBP(breakpoint)}`}
+					src={`https://cdn.arturbacilla.dev/${import.meta.env.VITE_PROJECT_HASH}/hand.png?f=webp${resByBP(breakpoint)}`}
 					alt="drowning hand"
 				/>
 			</section>
@@ -144,7 +144,7 @@ const App: React.FC = () => {
 				</Carousel>
 				<img
 					className="absolute right-[-15%] bottom-[-15%] z-0 size-[50vw] object-fill lg:right-[-7%]! lg:bottom-[-30%]! lg:size-[25vw]"
-					src="https://cdn.alivioemocional.help/balls.svg"
+					src={`https://cdn.arturbacilla.dev/${import.meta.env.VITE_PROJECT_HASH}/balls.svg`}
 					alt="decor-balls"
 				/>
 			</section>

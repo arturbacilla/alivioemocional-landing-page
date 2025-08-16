@@ -23,7 +23,7 @@ jobs:
         with:
           github_token: ${{ secrets.GITHUB_TOKEN }}
           default_bump: false
-          custom_release_rules: hotfix:patch,core:patch,ci:patch,build:major
+          custom_release_rules: hotfix:patch,chore:patch,ci:patch,build:major
 
       - name: Create a GitHub release
         uses: ncipollo/release-action@v1
@@ -53,6 +53,7 @@ jobs:
           push: true
           build-args: |
             VITE_PORT=${{ secrets.VITE_PORT }}
+            VITE_PROJECT_HASH=${{ secrets.VITE_PROJECT_HASH }}
             VITE_PUBLIC_POSTHOG_KEY=${{ secrets.VITE_PUBLIC_POSTHOG_KEY }}
             VITE_PUBLIC_POSTHOG_HOST=${{ secrets.VITE_PUBLIC_POSTHOG_HOST }}
             VITE_PUBLIC_KIWIFY_URL=${{ secrets.VITE_PUBLIC_KIWIFY_URL }}
